@@ -307,12 +307,12 @@ Eğer Dropdownlist'i bir değere bağlarsak, sayfa yeniden yüklendiğinde eski 
 public int? SelectedGenreId {get; set;}
 ```
 
-![image-20211202201726090](img\image-20211202201726090.png)
+![image-20211202201726090](img/image-20211202201726090.png)
 
 **HomeController.cs**'de gönderdiğimiz *genre* değerini modelin içine aktarıyoruz. Yani geleni tekrar *View*'a gönderiyoruz. ***asp-for="SelectedGenreId"*** ile modele bağlıyoruz.
 
-![image-20211202202311242](img\image-20211202202311242.png)
+![image-20211202202311242](img/image-20211202202311242.png)
 
 Eğer genre içerisinde değer yoksa false olacağından sağdaki Any() ifadesine hiç bakmayacaktır, dolayısıyla tüm listeyi döndürecektir.
 
-![image-20211202201915045](img\image-20211202201915045.png)
+![image-20211202201915045](img/image-20211202201915045.png)
