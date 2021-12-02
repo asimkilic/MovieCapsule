@@ -20,17 +20,18 @@ namespace MovieCapsule.Controllers
             _db = db;
         }
 
-        public IActionResult Index(int? genre)
+        public IActionResult Index(int? genre, string q)
         {
+            bool sayiMi = decimal.TryParse(q, out decimal puan);
             var vm = new HomeViewModel()
             {
-                Genres = _db.Genres
-                .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() })
-                .ToList(),
-                Movies = _db.Movies.Include(x => x.Genres)
-                .Where(x => !genre.HasValue || x.Genres.Any(g => g.Id == genre))
-                .ToList(),
-                SelectedGenreId = genre
+                Genres = _db.Genres.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList(),
+                Movies = _db.Movies.Include(x => x.Genres).Where(x =>
+                (!genre.HasValue || x.Genres.Any(g => g.Id == genre))
+                && (q == null || x.Title.Contains(q) || x.Year.ToString().Contains(q)
+                || x.Rating.ToString().Contains(q))).ToList(),
+                SelectedGenreId = genre,
+                SearchCriteria = q
             };
             return View(vm);
         }

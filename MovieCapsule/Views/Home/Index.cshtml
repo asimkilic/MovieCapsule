@@ -3,20 +3,24 @@
     ViewData["Title"] = "Home Page";
 }
 <h1>Movies</h1>
-<form>
-    <div class="row align-items-center">
+<div class="row align-items-center">
+    <form class="col-auto row">
         <div class="col-auto">
             <select asp-for="SelectedGenreId" name="genre" asp-items="Model.Genres">
-                <option value="">Tümü</option>
+                <option value="">All</option>
             </select>
         </div>
         <div class="col-auto">
-            <button class="btn btn-primary">Listele</button>
+            <button class="btn btn-primary">List</button>
         </div>
-    </div>
-</form>
+    </form>
 
-<table class="table table-striped">
+    <form class="col-auto ml-auto">
+        <input type="text" name="q" placeholder="Search.." class="form-control" />
+    </form>
+</div>
+
+<table id="tblMovies" class="table table-striped table-bordered mt-3">
     <thead>
         <tr>
             <th>Id</th>
@@ -39,3 +43,12 @@
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script>
+        $("#tblMovies").DataTable({
+            lengthChange:false
+        });
+        
+    </script>
+} 

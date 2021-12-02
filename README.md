@@ -316,3 +316,40 @@ public int? SelectedGenreId {get; set;}
 Eğer genre içerisinde değer yoksa false olacağından sağdaki Any() ifadesine hiç bakmayacaktır, dolayısıyla tüm listeyi döndürecektir.
 
 ![image-20211202201915045](img/image-20211202201915045.png)
+
+
+
+**HomeViewModel.cs** içerisine bir property daha ekliyoruz 
+
+```c#
+        public string SearchCriteria { get; set; }
+```
+
+**HomeController** içinde *Index* metoduna parametre olarak ***string q*** ekliyoruz ve vm'yi View'a göndermeden hemen önce ***SearchCriteria=q*** olarak dolduruyoruz.
+
+
+
+**wwwroot** içinde **lib** sağ tuş ***add>Client Side Library***
+
+provider: unpkg 
+library: datatables.net@1.11.3
+ve
+library: datatables.net-bs4@1.11.3
+
+Layout'ta bootstrap.min.css'den sonra *datatables.bootstrap4.min.css' ekliyorum. En alttada site.js'den önce 
+
+- jquery.dataTables.min.js
+
+- dataTables.bootstrap4.min.js'yi ekliyorum.
+
+**Index.cshtml** de table'a *tblMovies* id'si veriyoruz ve;
+
+```javascript
+@section Scripts{
+    <script>
+        $("#tblMovies").DataTable();
+    </script>
+} 
+```
+
+https://datatables.net/reference/option/
