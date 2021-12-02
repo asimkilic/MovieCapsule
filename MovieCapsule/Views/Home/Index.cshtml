@@ -1,8 +1,21 @@
-﻿@model List<Movie>
+﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 <h1>Movies</h1>
+<form>
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <select asp-for="SelectedGenreId" name="genre" asp-items="Model.Genres">
+                <option value="">Tümü</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary">Listele</button>
+        </div>
+    </div>
+</form>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -14,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Movie movie in Model)
+        @foreach (Movie movie in Model.Movies)
         {
             <tr>
                 <td>@movie.Id</td>

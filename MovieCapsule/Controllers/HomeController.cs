@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MovieCapsule.Models;
@@ -14,14 +15,24 @@ namespace MovieCapsule.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
-        public HomeController( ApplicationDbContext db)
+        public HomeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? genre)
         {
-            return View(_db.Movies.Include(x=>x.Genres).ToList());
+            var vm = new HomeViewModel()
+            {
+                Genres = _db.Genres
+                .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() })
+                .ToList(),
+                Movies = _db.Movies.Include(x => x.Genres)
+                .Where(x => !genre.HasValue || x.Genres.Any(g => g.Id == genre))
+                .ToList(),
+                SelectedGenreId = genre
+            };
+            return View(vm);
         }
 
         public IActionResult Privacy()
