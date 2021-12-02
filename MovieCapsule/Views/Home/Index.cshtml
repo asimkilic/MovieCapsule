@@ -1,8 +1,28 @@
-﻿@{
+﻿@model List<Movie>
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Movies</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
+            <th>Genres</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Movie movie in Model)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Rating</td>
+                <td>@string.Join(", ", movie.Genres.Select(x => x.Name))</td>
+            </tr>
+        }
+    </tbody>
+</table>
