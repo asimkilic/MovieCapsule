@@ -299,7 +299,7 @@ Kodumuzu biraz daha geliştecek olursak, dropdownlist'ten herhangi bir Genre se�
 
 ```
 
-<img src="C:\Users\ofn2nvu\AppData\Roaming\Typora\typora-user-images\image-20211202201319444.png" alt="image-20211202201319444" style="zoom:80%;" />
+<img src="img\image-20211202201319444.png" alt="image-20211202201319444" style="zoom:80%;" />
 
 Eğer Dropdownlist'i bir değere bağlarsak, sayfa yeniden yüklendiğinde eski değeri taşıyabiliriz. Onun için **HomeViewModel** içerisine bir *property* daha ekliyoruz.
 
@@ -307,12 +307,12 @@ Eğer Dropdownlist'i bir değere bağlarsak, sayfa yeniden yüklendiğinde eski 
 public int? SelectedGenreId {get; set;}
 ```
 
-![image-20211202201726090](C:\Users\ofn2nvu\AppData\Roaming\Typora\typora-user-images\image-20211202201726090.png)
+![image-20211202201726090](img\image-20211202201726090.png)
 
 **HomeController.cs**'de gönderdiğimiz *genre* değerini modelin içine aktarıyoruz. Yani geleni tekrar *View*'a gönderiyoruz. ***asp-for="SelectedGenreId"*** ile modele bağlıyoruz.
 
-![image-20211202202311242](C:\Users\ofn2nvu\AppData\Roaming\Typora\typora-user-images\image-20211202202311242.png)
+![image-20211202202311242](img\image-20211202202311242.png)
 
 Eğer genre içerisinde değer yoksa false olacağından sağdaki Any() ifadesine hiç bakmayacaktır, dolayısıyla tüm listeyi döndürecektir.
 
-![image-20211202201915045](C:\Users\ofn2nvu\AppData\Roaming\Typora\typora-user-images\image-20211202201915045.png)
+![image-20211202201915045](img\image-20211202201915045.png)
